@@ -1,7 +1,7 @@
 const express = require('express')
 const route = express.Router() 
-const generateURL = require('../controller/generateURL')
+const generate = require('../controller/generateURL')
 
-route.post('/', generateURL.generateURL)
+route.post('/', generate.generateURL)
 
 module.exports = route

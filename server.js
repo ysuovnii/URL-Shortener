@@ -17,7 +17,9 @@ dbConnection.connectDB(MONGO_URL)
 
 //routes
 const urlRoute = require('./routes/urlRoute')
+const redirect = require('./controller/Redirect');
 server.use('/url', urlRoute)
+server.get('/:id', redirect.redirectURL) 
 
 //entry 
 server.listen(PORT, () => {
