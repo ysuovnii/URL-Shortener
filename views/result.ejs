@@ -2,28 +2,66 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>URL Shortened</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>URL Shortened - Success!</title>
     <link rel="stylesheet" href="/style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
 </head>
 <body>
-    <h1>URL Shortened!</h1>
+    <div class="container">
+        <header>
+            <h1><i class="fas fa-check-circle"></i> URL Shortened Successfully!</h1>
+            <p>Your long URL has been transformed into a short, shareable link</p>
+        </header>
 
-    <p>Original URL: <%= originalUrl %></p>
-    <p class="success">
-        Short URL: 
-        <a class="short-link" href="<%= shortUrl %>" target="_blank"><%= shortUrl %></a>
-        <button class="copy-btn" onclick="copyToClipboard('<%= shortUrl %>')">Copy</button>
-    </p>
+        <main>
+            <div class="result-card">
+                <div class="url-display">
+                    <div class="original-url">
+                        <i class="fas fa-external-link-alt"></i>
+                        <span class="label">Original URL:</span>
+                        <span class="url-text"><%= originalUrl %></span>
+                    </div>
+                    <div class="short-url">
+                        <i class="fas fa-link"></i>
+                        <span class="label">Short URL:</span>
+                        <a class="short-link" href="<%= shortUrl %>" target="_blank"><%= shortUrl %></a>
+                        <button class="btn btn-secondary copy-btn" onclick="copyToClipboard('<%= shortUrl %>')">
+                            <i class="fas fa-copy"></i> Copy
+                        </button>
+                    </div>
+                </div>
+            </div>
 
-    <a href="/">Shorten another URL</a>
+            <div class="actions">
+                <a href="/" class="btn btn-outline">
+                    <i class="fas fa-plus"></i> Shorten Another URL
+                </a>
+            </div>
+        </main>
+
+        <footer>
+            <p>Share your short link anywhere!</p>
+        </footer>
+    </div>
 
     <script>
         function copyToClipboard(text) {
             navigator.clipboard.writeText(text).then(() => {
-                alert('Copied to clipboard!');
+                showNotification('Copied to clipboard!', 'success');
             }).catch(err => {
-                alert('Failed to copy!');
+                showNotification('Failed to copy!', 'error');
             });
+        }
+
+        function showNotification(message, type) {
+            const notification = document.createElement('div');
+            notification.className = `notification ${type}`;
+            notification.innerHTML = `<i class="fas fa-${type === 'success' ? 'check' : 'times'}"></i> ${message}`;
+            document.body.appendChild(notification);
+            setTimeout(() => {
+                notification.remove();
+            }, 3000);
         }
     </script>
 </body>
