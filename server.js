@@ -22,7 +22,7 @@ dbConnection.connectDB(MONGO_URL)
 //SSR
 server.use(express.static(path.join(__dirname, 'public')));
 server.set('view engine', 'ejs');
-server.set('views', path.join(__dirname, 'views'));
+server.set('vihttps://github.com/ysuovnii/URL-Shortenerews', path.join(__dirname, 'views'));
 
 server.get('/', (req, res) => res.render('index', { error: null }));
 
@@ -32,6 +32,15 @@ const urlRoute = require('./routes/urlRoute')
 const redirect = require('./controller/Redirect');
 server.use('/url', urlRoute)
 server.get('/:id', redirect.redirectURL) 
+
+const userRoute = require('./routes/userRoute')
+
+server.use('/user', userRoute)
+
+//static route 
+server.get('/signup', (req, res)=>{
+    return res.render('signup.ejs')
+})
 
 //entry 
 server.listen(PORT, () => {
