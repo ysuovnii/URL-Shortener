@@ -12,7 +12,7 @@ async function handleUser(req, res) {
         name, email, password
     })
 
-    return res.render("index")
+    return res.render('index', {error : null})
 }
 
 module.exports = {showSignup, handleUser}

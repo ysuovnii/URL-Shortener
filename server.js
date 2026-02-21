@@ -37,10 +37,6 @@ const userRoute = require('./routes/userRoute')
 
 server.use('/user', userRoute)
 
-//static route 
-server.get('/signup', (req, res)=>{
-    return res.render('signup.ejs')
-})
 
 //entry 
 server.listen(PORT, () => {

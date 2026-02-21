@@ -3,7 +3,7 @@ const router = express.Router()
 
 const ctrl = require('../controller/user')
 
-router.post('/signup', ctrl.showSignup)
-router.post('/', ctrl.handleUser)
+router.get('/signup', ctrl.showSignup)
+router.post('/signup', ctrl.handleUser)
 
 module.exports = router 
